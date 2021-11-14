@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+
+  int n = 3;
+  int m = 4;
+  int sum = 1;
+
+  int arr[n][m];
+  int arrayOfMinValues[m];
+
+
+  //enter into matrix rand values
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      arr[i][j] = rand() % (9 - (1) + 1) + (1);
+    }
+  }
+
+  //output matrix
+  printf("Matrix:\n");
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      if(i != 0){
+        if(arrayOfMinValues[j] >= arr[i][j]){
+          arrayOfMinValues[j] = arr[i][j];
+        }
+      }
+      else{
+        arrayOfMinValues[j] = arr[i][j];
+      }
+    }    
+  }
+  
+  //output min values of matrix columns
+  printf("\nMin Values:\n");
+  for(int i = 0; i < m; i++){
+    printf("%d ", arrayOfMinValues[i]);
+  }
+
+  //Calculating the product of minimum elements
+  for(int i = 0; i < m; i++){
+    sum *= arrayOfMinValues[i];
+  }
+
+  printf("\n\nProduct of minimun elements: %d ", sum);
+}

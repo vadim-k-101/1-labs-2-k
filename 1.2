@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+double sort(double *arr, int n);
+
+int main(void) {
+
+  int n = 3;
+  int m = 4;
+  int sum = 1;
+
+  int arr[n][m];
+  double ar[n];
+
+  //enter into matrix rand values
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      arr[i][j] = rand() % (9 - (1) + 1) + (1);
+    }
+  }
+
+  //output matrix before sort
+  printf("Matrix:\n");
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+
+  //sorting
+  for(int i = 0; i < m; i++){
+    for(int j = 0; j < n; j++) ar[j] = arr[j][i];
+    
+    sort(ar, n);
+    for(int j = 0; j < n; j++) arr[j][i] = ar[j];
+  }
+
+
+  //output matrix after sort
+  printf("\n\nMatrix:\n");
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < m; j++){
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+
+double sort(double *arr, int n){
+
+  int max = arr[0];
+  int k = 0;
+
+  for (int i = 0; i < n; i++)
+  {
+    max = arr[i];
+    k = i;
+
+    for (int j = i + 1; j < n; j++){
+        if (arr[j] > max){
+          k = j;
+          max = arr[j];           
+        }
+
+    }
+
+    int c = arr[i];
+    arr[i] = arr[k];
+    arr[k] = c; 
+  }
+
+  return *arr;
+}
